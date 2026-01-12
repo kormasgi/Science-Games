@@ -60,7 +60,7 @@ def generate():
         size="1024x1024"
     )
 
-    return jsonify(image=image.data[0].b64_json)
+    return jsonify(image=image.data[0].b64_json), 
 
 if __name__ == "__main__":
     app.run(debug=True)

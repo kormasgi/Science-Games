@@ -5,17 +5,19 @@ body {
     padding: 0;
     position: relative;
     overflow: hidden;
+
+    min-height: 100vh;
+    overflow-y: auto;
 }
 
 body::before {
-    content: "";
-    position: fixed;
-    inset: -60%;
-    background-image: url("New Piskel.png");
-    background-repeat: repeat;
-    background-size: 65px;
-    transform: rotate(45deg);
-    z-index: -1;
+  content: "";
+  position: fixed;
+  inset: -60%;
+  background-image: url("New Piskel.png");
+  background-repeat: repeat;
+  background-size: 65px;
+  z-index: -1;
 }
 
 header {
@@ -32,9 +34,9 @@ header {
        background-image: url("/SCIENCE-GAMES/New Piskel.png");
  }
 
-header text {
+h1 {
     margin: 0;
-    font-size: 36px;
+    font-size: 90px;
     z-index: 2;
 }
 
