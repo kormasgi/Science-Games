@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Evolution Prediction</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png">
+</head>
+<body>
+
+<header>
+    <h1>Evolution Prediction</h1>
+</header>
+
+<h2 class="question">What do you think will happen in the future?</h2>
+<input id="future" class="input-box">
+
+<h2 class="question">In how much time will this happen? (example: 100 years)</h2>
+<input id="time" class="input-box">
+
+<br><br>
+
+<button class="generate-btn" onclick="runProgram()">
+    Generate Image
+</button>
+
+<p id="status"></p>
+<img id="result">
+
+<script>
+async function runProgram() {
+    const future = document.getElementById("future").value;
+    const time = document.getElementById("time").value;
+
+    document.getElementById("status").innerText = "Generating image...";
+
+    const formData = new FormData();
+    formData.append("future", future);
+    formData.append("time", time);
+
+    const res = await fetch("/generate", {
+        method: "POST",
+        body: formData
+    });
+
+    const data = await res.json();
+
+    if (data.error) {
+        document.getElementById("status").innerText = data.error;
+        return;
+    }
+
+    document.getElementById("result").src =
+        "data:image/png;base64," + data.image;
+
+    document.getElementById("status").innerText = "Done!";
+}
+</script>
+
+</body>
+</html>
