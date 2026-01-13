@@ -28,6 +28,13 @@ header {
     align-items: center;
 }
 
+.logo-link {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+}
+
+
 .imageContainer {
        width:200px; 
        height:200px; 
