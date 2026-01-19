@@ -21,13 +21,13 @@ def merge():
         race = "normal"
 
     glicksman_files = {
-        "normal": "normal.png",
-        "asian": "asian.png",
-        "black": "black.png",
-        "indian": "indian.png",
-        "hispanic": "hispanic.png",
-        "israeli": "israeli.png",
-        "british": "british.png"
+        "normal": "normal Glicksman.png",
+        "asian": "Asian Glicksman.png",
+        "black": "Black Glicksman.png",
+        "indian": "Indian Glicksman.png",
+        "hispanic": "Hispanic Glicksman.png",
+        "israeli": "Israeli Glicksman.png",
+        "british": "British Glicksman.png"
     }
 
     response = requests.get(img_url, timeout=15)

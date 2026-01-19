@@ -54,6 +54,5 @@ body {
 /* Overlay image ON TOP */
 #overlayImg {
   position: absolute;
-  z-index: 10;
   pointer-events: none;
 }

@@ -3,8 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Glicks-i-fy</title>
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="glicks-style.css">
+
 </head>
+
 <body>
 
 <h1 class="title">Glicks-i-fy</h1>
@@ -57,13 +64,6 @@ const sizeSlider = document.getElementById("sizeSlider");
 
 let selectedRace = null;
 
-/* CENTER overlay after base image loads */
-function positionOverlay() {
-  overlayImg.style.left = xSlider.value + "px";
-  overlayImg.style.top = ySlider.value + "px";
-  overlayImg.style.width = sizeSlider.value + "px";
-}
-
 /* Race buttons */
 document.querySelectorAll(".race-buttons button").forEach(btn => {
   btn.addEventListener("click", () => {
@@ -82,20 +82,39 @@ overlayInput.addEventListener("input", () => {
   overlayImg.src = overlayInput.value;
 });
 
-/* Base image input */
+/* Base input */
 baseInput.addEventListener("input", () => {
   baseImg.src = baseInput.value;
 });
 
-/* Wait until base image loads to set container size */
-baseImg.onload = () => {
+/* Function to update overlay position and size */
+function updateOverlay() {
+  overlayImg.style.display = "block";
+  overlayImg.style.width = sizeSlider.value + "px";
+  overlayImg.style.left = xSlider.value + "px";
+  overlayImg.style.top = ySlider.value + "px";
+  overlayImg.style.zIndex = "100"; // ensures overlay is on top
+}
+
+/* Ensure container matches base image size */
+function updateContainer() {
   container.style.width = baseImg.offsetWidth + "px";
   container.style.height = baseImg.offsetHeight + "px";
-  positionOverlay();
+  updateOverlay();
+}
+
+/* Run when base image loads */
+baseImg.onload = () => {
+  updateContainer();
 };
 
-/* Live sliders */
-[xSlider, ySlider, sizeSlider].forEach(el => el.addEventListener("input", positionOverlay));
+/* Run when overlay image loads */
+overlayImg.onload = () => {
+  updateOverlay();
+};
+
+/* Live updates */
+[xSlider, ySlider, sizeSlider].forEach(el => el.addEventListener("input", updateOverlay));
 </script>
 
 </body>
