@@ -1,59 +1,59 @@
 body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-    text-align: center;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
 
 .title {
-    font-size: 60px;
-    margin: 30px 0;
+  font-size: 60px;
+  margin: 30px 0;
 }
 
 .controls {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .controls input {
-    width: 320px;
-    padding: 8px;
+  width: 320px;
+  padding: 8px;
 }
 
 .controls input[type="range"] {
-    width: 300px;
+  width: 300px;
 }
 
 .race-buttons button {
-    margin: 5px;
-    padding: 8px 12px;
-    cursor: pointer;
+  margin: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
 }
 
 .race-buttons button.active {
-    background: black;
-    color: white;
+  background: black;
+  color: white;
 }
 
-/* TRUE CENTERING */
+/* CENTER container */
 .image-wrapper {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-/* 🔑 REQUIRED FOR OVERLAY */
+/* RELATIVE container for overlay */
 .image-container {
-    position: relative;
+  position: relative;
 }
 
 /* Base image */
 #baseImg {
-    display: block;
-    max-width: 600px;
+  display: block;
+  max-width: 600px;
 }
 
-/* Overlay image */
+/* Overlay image ON TOP */
 #overlayImg {
-    position: absolute;
-    z-index: 100;   /* 🔑 GUARANTEED ABOVE */
-    pointer-events: none;
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
 }

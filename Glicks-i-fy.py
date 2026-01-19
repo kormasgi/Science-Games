@@ -17,7 +17,6 @@ def merge():
     img_url = request.args.get("url")
     race = request.args.get("race", "normal").lower().strip()
 
-    # white == normal
     if race == "white":
         race = "normal"
 
@@ -31,7 +30,6 @@ def merge():
         "british": "british.png"
     }
 
-    # Fetch background image (server-side → no CORS)
     response = requests.get(img_url, timeout=15)
     response.raise_for_status()
 
