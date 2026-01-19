@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Glicks-i-fy</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1 class="title">Glicks-i-fy</h1>
+
+<div class="controls">
+
+    <h3>Base Image URL</h3>
+    <input id="baseInput" placeholder="Base image URL">
+
+    <h3>Overlay Image URL (optional)</h3>
+    <input id="overlayInput" placeholder="Overlay image URL">
+
+    <h3>Race Presets</h3>
+    <div class="race-buttons">
+        <button data-src="Indian Glicksman.png">Indian</button>
+        <button data-src="Black Glicksman.png">Black</button>
+        <button data-src="normal Glicksman.png">White / Normal</button>
+        <button data-src="Asian Glicksman.png">Asian</button>
+        <button data-src="Hispanic Glicksman.png">Hispanic</button>
+        <button data-src="Israeli Glicksman.png">Israeli</button>
+        <button data-src="British Glicksman.png">British</button>
+    </div>
+
+    <h3>Overlay Size (px)</h3>
+    <input type="range" id="sizeSlider" min="50" max="400" value="150">
+
+    <h3>Overlay X (px)</h3>
+    <input type="range" id="xSlider" min="0" max="600" value="100">
+
+    <h3>Overlay Y (px)</h3>
+    <input type="range" id="ySlider" min="0" max="600" value="100">
+
+</div>
+
+<div class="image-wrapper">
+    <div class="image-container" id="imageContainer">
+        <img id="baseImg">
+        <img id="overlayImg">
+    </div>
+</div>
+
+<script>
+const baseInput = document.getElementById("baseInput");
+const overlayInput = document.getElementById("overlayInput");
+const baseImg = document.getElementById("baseImg");
+const overlayImg = document.getElementById("overlayImg");
+const container = document.getElementById("imageContainer");
+
+const xSlider = document.getElementById("xSlider");
+const ySlider = document.getElementById("ySlider");
+const sizeSlider = document.getElementById("sizeSlider");
+
+let selectedRace = null;
+
+/* Base image load FIX */
+baseImg.onload = () => {
+    container.style.width = baseImg.offsetWidth + "px";
+    container.style.height = baseImg.offsetHeight + "px";
+    updateOverlay();
+};
+
+/* Race buttons */
+document.querySelectorAll(".race-buttons button").forEach(btn => {
+    btn.onclick = () => {
+        selectedRace = btn.dataset.src;
+        overlayInput.value = "";
+
+        document.querySelectorAll(".race-buttons button")
+            .forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        overlayImg.src = selectedRace;
+    };
+});
+
+/* Overlay URL input disables race */
+overlayInput.addEventListener("input", () => {
+    selectedRace = null;
+    document.querySelectorAll(".race-buttons button")
+        .forEach(b => b.classList.remove("active"));
+    overlayImg.src = overlayInput.value;
+});
+
+/* Base input */
+baseInput.addEventListener("input", () => {
+    baseImg.src = baseInput.value;
+});
+
+/* Overlay positioning */
+function updateOverlay() {
+    overlayImg.style.width = sizeSlider.value + "px";
+    overlayImg.style.left = xSlider.value + "px";
+    overlayImg.style.top = ySlider.value + "px";
+}
+
+/* Live sliders */
+[xSlider, ySlider, sizeSlider].forEach(el =>
+    el.addEventListener("input", updateOverlay)
+);
+</script>
+
+</body>
+</html>
