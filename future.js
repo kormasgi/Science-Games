@@ -1,5 +1,5 @@
 const output = document.getElementById("output");
-const startBtn = document.getElementById("startBtn");
+const startImg = document.getElementById("startImg");
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -9,7 +9,7 @@ if (!SpeechRecognition) {
 
   const recognition = new SpeechRecognition();
   recognition.lang = "en-US";
-  recognition.continuous = false; // stops after one phrase
+  recognition.continuous = false;
   recognition.interimResults = false;
 
   recognition.onstart = () => {
@@ -28,9 +28,10 @@ if (!SpeechRecognition) {
 
   recognition.onerror = (event) => {
     console.error("Error:", event.error);
+    output.textContent = "Error: " + event.error;
   };
 
-  startBtn.onclick = () => {
+  startImg.onclick = () => {
     recognition.start();
   };
 }
